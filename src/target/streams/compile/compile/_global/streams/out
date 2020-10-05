@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:12:3: not found: value printlln[0m
+[0m[[0m[31merror[0m] [0m[0m		printlln("Welcome to the palindromic sequence project!")[0m
+[0m[[0m[31merror[0m] [0m[0m		^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
