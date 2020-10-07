@@ -62,6 +62,7 @@ object FunctionalPalindromesSearch {
 			println("[y]: when informed, all palindromic sequences must be saved to a file")
 			System.exit(0)
 		}
+		val start = System.currentTimeMillis()
 		var n, m = 0
 		n = args(0).toByte
 		m = args(1).toByte
@@ -77,7 +78,9 @@ object FunctionalPalindromesSearch {
 			accumulator.update(0, i.toByte)
 			sumCombinations(n.toByte, m.toByte, accumulator)		
 		}
+		val end = System.currentTimeMillis()
+		
 		println("\nNumber of palendromic sequences found: " + count)
-		println("It took me ")
+		println("It took me " + ((end - start) / 1000).toInt + "s")
 	}
 }
