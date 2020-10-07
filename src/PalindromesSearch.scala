@@ -15,10 +15,21 @@ object FunctionalPalindromesSearch {
 		sum
 	}
 	// Combinations
-	def sumToN(n: Int): Seq[Int] = {
-		val temp = new ArrayBuffer[Int]
-		temp.append(n)
-		temp.toList
+	def sumToN(n: Int, acc: ArrayBuffer[Int], combos: ArrayBuffer[List[Int]]): Seq[Int] = {
+		
+		val sum = listSum(acc)
+		val value = if (acc.last < n - sum) acc.last else n - sum
+		
+		if (sum == n) combos.append(acc.toList)
+		
+		else {
+			for (j <- 1 to value) {
+				ArrayBuffer[Int] rec = acc.clone()
+				rec + j
+				combos ++ sumToN(n, rec, combos)
+			}
+		combos
+		}
 	}
 	// Permutations
 
@@ -30,5 +41,7 @@ object FunctionalPalindromesSearch {
 			println("Use: java PalindromesSearch$ n m [y]\n[y]: when informed, all palindromic sequences must be saved to a file")
 		val l = Array(1,2,3)
 		println("Sum of list: " + listSum(l))
+		// print sum list
+		for (num <- sumToN(4)) println(num)
 	}
 }
