@@ -21,28 +21,28 @@ object FunctionalPalindromesSearch {
     } 
 	
 	// Combinations
-	def sumCombinations(n: Byte, m: Byte, acc: ArrayBuffer[Byte]): Unit = {
+	def sumCombinations(n: Byte, m: Byte, acc: ArrayBuffer[Byte], boo: Int => Boolean): Unit = {
 		
 		val sum = acc.sum
 		// TODO: if the statement below could account for m we could safe some time.
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
 		if (sum > n / 2) {}
-		else if (acc.contains(m) || sum == (n - m) / 2) {
+		else if (acc.contains(m) || boo(sum)) {
 			combinations.append(acc.toList)
 	//		println("\nSum: " + sum)
 			permutations(acc.toList)
 			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
-				sumCombinations(n, m, rec)
+				sumCombinations(n, m, rec, boo)
 			}
 		}
 		else {
 			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
-				sumCombinations(n, m, rec)
+				sumCombinations(n, m, rec, boo)
 			}
 		}
 	}
@@ -73,10 +73,14 @@ object FunctionalPalindromesSearch {
 		println("Parameter n = " + n)
 		println("Parameter m = " + m)
 		var accumulator = new ArrayBuffer[Byte]
+		def evens(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - m) / 2
+		def evenOdd(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m)
+		def oddEven(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - 1)/2
+		def odds(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - 1) / 2
 		accumulator.append(0)
 		for (i <- 1 to n / 2) {
 			accumulator.update(0, i.toByte)
-			sumCombinations(n.toByte, m.toByte, accumulator)		
+			sumCombinations(n.toByte, m.toByte, accumulator, _ == (n - m) / 2)		
 		}
 		val end = System.currentTimeMillis()
 		
