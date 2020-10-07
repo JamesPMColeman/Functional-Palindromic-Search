@@ -20,20 +20,21 @@ object FunctionalPalindromesSearch {
     } 
 	
 	// Combinations
-	def sumCombinations(n: Int, acc: ArrayBuffer[Int]): Unit = {
+	def sumCombinations(n: Int, m: Int, acc: ArrayBuffer[Int]): Unit = {
 		
 		val sum = acc.sum
+		// TODO: if the statement below could account for m we could safe some time.
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
-		if (sum == n) {
+		if (sum == n && acc.contains(m)) {
 			combinations.append(acc.toList)
 			printList(acc.toList)
 		}
 		else {
-			for (j <- 1 to value) {
+			for (j <- m to value) {
 				var rec = acc.clone()
 				rec.append(j)
-				sumCombinations(n, rec)
+				sumCombinations(n, m, rec)
 			}
 		}
 	}
@@ -59,7 +60,7 @@ object FunctionalPalindromesSearch {
 		accumulator.append(n)
 		for (i <- m to n / 2) {
 			accumulator.update(0, i)
-			sumCombinations(n, accumulator)		
+			sumCombinations(n, m, accumulator)		
 		}
 	}
 }

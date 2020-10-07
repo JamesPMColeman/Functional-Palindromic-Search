@@ -1,7 +1,9 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:49:23: '<-' expected but ')' found.[0m
-[0m[[0m[31merror[0m] [0m[0m		for (i in m to n / 2) {[0m
-[0m[[0m[31merror[0m] [0m[0m		                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:53:2: illegal start of simple expression[0m
-[0m[[0m[31merror[0m] [0m[0m	}[0m
-[0m[[0m[31merror[0m] [0m[0m	^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:37:20: not enough arguments for method sumCombinations: (n: Int, m: Int, acc: scala.collection.mutable.ArrayBuffer[Int])Unit.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter acc.[0m
+[0m[[0m[31merror[0m] [0m[0m				sumCombinations(n, rec)[0m
+[0m[[0m[31merror[0m] [0m[0m				               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:63:19: not enough arguments for method sumCombinations: (n: Int, m: Int, acc: scala.collection.mutable.ArrayBuffer[Int])Unit.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter acc.[0m
+[0m[[0m[31merror[0m] [0m[0m			sumCombinations(n, accumulator)		[0m
+[0m[[0m[31merror[0m] [0m[0m			               ^[0m
 [0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
