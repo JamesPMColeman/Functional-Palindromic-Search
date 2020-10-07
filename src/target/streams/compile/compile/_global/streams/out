@@ -1,9 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:37:20: not enough arguments for method sumCombinations: (n: Int, m: Int, acc: scala.collection.mutable.ArrayBuffer[Int])Unit.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter acc.[0m
-[0m[[0m[31merror[0m] [0m[0m				sumCombinations(n, rec)[0m
-[0m[[0m[31merror[0m] [0m[0m				               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:63:19: not enough arguments for method sumCombinations: (n: Int, m: Int, acc: scala.collection.mutable.ArrayBuffer[Int])Unit.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter acc.[0m
-[0m[[0m[31merror[0m] [0m[0m			sumCombinations(n, accumulator)		[0m
-[0m[[0m[31merror[0m] [0m[0m			               ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:67:16: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.mutable.ArrayBuffer[Int][0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m		permutations(accumulator)[0m
+[0m[[0m[31merror[0m] [0m[0m		             ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

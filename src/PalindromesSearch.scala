@@ -39,7 +39,10 @@ object FunctionalPalindromesSearch {
 		}
 	}
 	// Permutations
-
+	def permutations(l: List[Int]): Unit = {
+		var perms = l.permutations
+		for (i <- perms) printList(i)
+	}
 	//
 
 	def main(args: Array[String]): Unit = {
@@ -58,9 +61,13 @@ object FunctionalPalindromesSearch {
 		}
 		var accumulator = new ArrayBuffer[Int]
 		accumulator.append(n)
-		for (i <- m to n / 2) {
+		accumulator.append(1)
+		accumulator.append(2)
+		accumulator.append(3)
+		permutations(accumulator.toList)
+/*		for (i <- m to n / 2) {
 			accumulator.update(0, i)
 			sumCombinations(n, m, accumulator)		
 		}
-	}
+*/	}
 }
