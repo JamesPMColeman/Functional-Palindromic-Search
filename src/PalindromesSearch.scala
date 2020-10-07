@@ -10,6 +10,7 @@ import scala.collection.mutable.ArrayBuffer
 object FunctionalPalindromesSearch {
 	
 	var combinations = new ArrayBuffer[List[Byte]]
+	var count = 0
 	
 	// Print list
  	def printList(l: List[Byte]): Unit = { 
@@ -26,12 +27,19 @@ object FunctionalPalindromesSearch {
 		// TODO: if the statement below could account for m we could safe some time.
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
-		if (acc.contains(m)) {
+		if (sum > n / 2) {}
+		else if (acc.contains(m) || sum == (n - m) / 2) {
 			combinations.append(acc.toList)
+	//		println("\nSum: " + sum)
 			permutations(acc.toList)
+			for (j <- 1 to value) {
+				var rec = acc.clone()
+				rec.append(j.toByte)
+				sumCombinations(n, m, rec)
+			}
 		}
 		else {
-			for (j <- m to value) {
+			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
 				sumCombinations(n, m, rec)
@@ -41,8 +49,10 @@ object FunctionalPalindromesSearch {
 	// Permutations
 	def permutations(l: List[Byte]): Unit = {
 		var perms = l.permutations
-		println("")
-		for (i <- perms) printList(i)
+		for (i <- perms) {
+	//		printList(i)
+			count += 1
+		}
 	}
 	//
 	def main(args: Array[String]): Unit = {
@@ -63,9 +73,11 @@ object FunctionalPalindromesSearch {
 		println("Parameter m = " + m)
 		var accumulator = new ArrayBuffer[Byte]
 		accumulator.append(0)
-		for (i <- m to n / 2) {
+		for (i <- 1 to n / 2) {
 			accumulator.update(0, i.toByte)
 			sumCombinations(n.toByte, m.toByte, accumulator)		
 		}
+		println("\nNumber of palendromic sequences found: " + count)
+		println("It took me ")
 	}
 }
