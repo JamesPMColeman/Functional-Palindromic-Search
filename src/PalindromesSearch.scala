@@ -26,7 +26,7 @@ object FunctionalPalindromesSearch {
 		// TODO: if the statement below could account for m we could safe some time.
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
-		if (sum == n && acc.contains(m)) {
+		if (acc.contains(m)) {
 			combinations.append(acc.toList)
 			printList(acc.toList)
 		}
@@ -44,7 +44,6 @@ object FunctionalPalindromesSearch {
 		for (i <- perms) printList(i)
 	}
 	//
-
 	def main(args: Array[String]): Unit = {
 		println("\n\nWelcome to the palindromic sequence project!\n\n")
 		if (args.length < 2 || args.length > 3) {
@@ -56,18 +55,16 @@ object FunctionalPalindromesSearch {
 		n = args(0).toInt
 		m = args(1).toInt
 		if (m > n || n < 1 || m < 1 || n > 127) {
-			println("Gross, I don't like these numbers.")
+			println("I don't like these numbers. Please try again.")
 			System.exit(0)
 		}
+		println("Parameter n = " + n)
+		println("Parameter m = " + m)
 		var accumulator = new ArrayBuffer[Int]
-		accumulator.append(n)
-		accumulator.append(1)
-		accumulator.append(2)
-		accumulator.append(3)
-		permutations(accumulator.toList)
-/*		for (i <- m to n / 2) {
+		accumulator.append(0)
+		for (i <- m to n / 2) {
 			accumulator.update(0, i)
 			sumCombinations(n, m, accumulator)		
 		}
-*/	}
+	}
 }

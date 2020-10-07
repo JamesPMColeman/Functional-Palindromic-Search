@@ -1,4 +1,4 @@
 *.class
 *.log
 *.swp
-src/target/*
+*target*
