@@ -1,26 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:23:30: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
-[0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
-[0m[[0m[31merror[0m] [0m[0m		if (sum == n) combos.append(acc.toList)[0m
-[0m[[0m[31merror[0m] [0m[0m		                           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:27:16: missing argument list for method apply in class GenericCompanion[0m
-[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
-[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `apply _` or `apply(_)` instead of `apply`.[0m
-[0m[[0m[31merror[0m] [0m[0m				ArrayBuffer[Int] rec = acc.clone()[0m
-[0m[[0m[31merror[0m] [0m[0m				           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:28:5: not found: value rec[0m
-[0m[[0m[31merror[0m] [0m[0m				rec + j[0m
-[0m[[0m[31merror[0m] [0m[0m				^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:29:25: not found: value rec[0m
-[0m[[0m[31merror[0m] [0m[0m				combos ++ sumToN(n, rec, combos)[0m
-[0m[[0m[31merror[0m] [0m[0m				                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:31:3: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.mutable.ArrayBuffer[List[Int]][0m
-[0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
-[0m[[0m[31merror[0m] [0m[0m		combos[0m
-[0m[[0m[31merror[0m] [0m[0m		^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:45:21: not enough arguments for method sumToN: (n: Int, acc: scala.collection.mutable.ArrayBuffer[Int], combos: scala.collection.mutable.ArrayBuffer[List[Int]])Seq[Int].[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters acc, combos.[0m
-[0m[[0m[31merror[0m] [0m[0m		for (num <- sumToN(4)) println(num)[0m
-[0m[[0m[31merror[0m] [0m[0m		                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m6 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:49:23: '<-' expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m		for (i in m to n / 2) {[0m
+[0m[[0m[31merror[0m] [0m[0m		                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jamescoleman/Programming/scala/Functional-Palindromic-Search/src/PalindromesSearch.scala:53:2: illegal start of simple expression[0m
+[0m[[0m[31merror[0m] [0m[0m	}[0m
+[0m[[0m[31merror[0m] [0m[0m	^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

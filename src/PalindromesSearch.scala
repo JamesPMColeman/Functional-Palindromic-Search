@@ -9,30 +9,35 @@ import scala.collection.mutable.ArrayBuffer
 
 object FunctionalPalindromesSearch {
 	
-	// Sum
-	def listSum(l: Seq[Int]): Int = {
-		var sum = 0
-		for (i <- l) sum += i
-		sum
-	}
+	var combinations = new ArrayBuffer[List[Int]]
+	
+	// Print list
+ 	def printList(l: List[Int]): Unit = { 
+        print("(")
+        for (i <- 0 to l.length - 2) print(l(i) + ", ")
+        print(l.last)
+        println(")")    
+    } 
+	
 	// Combinations
-/*	def sumToN(n: Int, acc: ArrayBuffer[Int], combos: ArrayBuffer[List[Int]]): Seq[Int] = {
+	def sumCombinations(n: Int, acc: ArrayBuffer[Int]): Unit = {
 		
-		val sum = listSum(acc)
+		val sum = acc.sum
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
-		if (sum == n) combos.append(acc.toList)
-		
+		if (sum == n) {
+			combinations.append(acc.toList)
+			printList(acc.toList)
+		}
 		else {
 			for (j <- 1 to value) {
-				ArrayBuffer[Int] rec = acc.clone()
-				rec + j
-				combos ++ sumToN(n, rec, combos)
+				var rec = acc.clone()
+				rec.append(j)
+				sumCombinations(n, rec)
 			}
-		combos
 		}
 	}
-*/	// Permutations
+	// Permutations
 
 	//
 
@@ -49,6 +54,12 @@ object FunctionalPalindromesSearch {
 		if (m > n || n < 1 || m < 1 || n > 127) {
 			println("Gross, I don't like these numbers.")
 			System.exit(0)
+		}
+		var accumulator = new ArrayBuffer[Int]
+		accumulator.append(n)
+		for (i <- m to n / 2) {
+			accumulator.update(0, i)
+			sumCombinations(n, accumulator)		
 		}
 	}
 }
