@@ -30,7 +30,7 @@ object FunctionalPalindromesSearch {
 		if (sum > n / 2) {}
 		else if (boo(sum, acc)) {
 			combinations.append(acc.toList)
-			println("\nSum: " + sum)
+	//		println("\nSum: " + sum)
 			permutations(acc.toList)
 			for (j <- 1 to value) {
 				var rec = acc.clone()
@@ -50,7 +50,7 @@ object FunctionalPalindromesSearch {
 	def permutations(l: List[Byte]): Unit = {
 		var perms = l.permutations
 		for (i <- perms) {
-			printList(i)
+	//		printList(i)
 			count += 1
 		}
 	}
