@@ -30,7 +30,7 @@ object FunctionalPalindromesSearch {
 		if (sum > n / 2) {}
 		else if (boo(sum, acc)) {
 			combinations.append(acc.toList)
-	//		println("\nSum: " + sum)
+			println("\nSum: " + sum)
 			permutations(acc.toList)
 			for (j <- 1 to value) {
 				var rec = acc.clone()
@@ -50,18 +50,19 @@ object FunctionalPalindromesSearch {
 	def permutations(l: List[Byte]): Unit = {
 		var perms = l.permutations
 		for (i <- perms) {
-	//		printList(i)
+			printList(i)
 			count += 1
 		}
 	}
-	// Print
-	def printSequence(n: Int, m: Int): Unit = {
+	// Build Palindromes
+	def palindromeAssemly(n: Byte, m: Byte): Unit = {
 		// I may be able to save time by passing sum into combinations instead of recalculating it
 		// TODO finish
 		for (l <- combinations) {
 			val s = l.sum
-			if (s * 2 == n) printList(l ++ l.reverse)
-			if (s * 2 == n - m) printList(l ++ m ++ l.reverse)
+			if (s * 2 == n) 			printList(l.reverse ++ l)
+			else if (s * 2 == n - m) 	printList(l.reverse ++ (m +: l))
+			else 						printList(l.reverse ++ ((n - s * 2).toByte +: l))
 		}
 	}
 	def main(args: Array[String]): Unit = {
@@ -105,8 +106,9 @@ object FunctionalPalindromesSearch {
 			println("It took me " + ((end - start) / 1000).toInt + "s")
 		}
 		else {
-			printSequence(n, m)
-			println("Done")			
+			println("\n=====================================\n")
+			palindromeAssemly(n.toByte, m.toByte)
+			println("Done: " + count)			
 		}
 	}
 }
