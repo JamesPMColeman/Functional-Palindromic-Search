@@ -6,18 +6,22 @@
  *
  */
 import scala.collection.mutable.ArrayBuffer
+import java.io.File
+import java.io.PrintWriter
 
 object FunctionalPalindromesSearch {
-	
+
+	val OUTPUT_FILE_NAME = "palindromes.txt"
+	val file = new File(OUTPUT_FILE_NAME)
+	val fileWriter = new PrintWriter(file)	
 	var permutations = new ArrayBuffer[List[Byte]]
 	var count = 0
 	
 	// Print list
  	def printList(l: List[Byte]): Unit = { 
-        print("(")
-        for (i <- 0 to l.length - 2) print(l(i) + ", ")
-        print(l.last)
-        println(")")    
+        fileWriter.write("(")
+        for (i <- 0 to l.length - 2) fileWriter.write(l(i) + ", ")
+        fileWriter.write(l(l.length - 1) + ")\n")    
     } 
 	
 	// Combinations
@@ -59,6 +63,14 @@ object FunctionalPalindromesSearch {
 			else if (s * 2 == n - m) 	printList(l.reverse ++ (m +: l))
 			else 						printList(l.reverse ++ ((n - s * 2).toByte +: l))
 		}
+	}
+	// Duplicate detection
+	def duplicates(): Boolean = {
+		var b = false
+		for (i <- 0 to permutations.length - 1)
+			for (j <- i + 1 to permutations.length - 1)
+				if (permutations(i) == permutations(j)) b = true
+		b	
 	}
 	def main(args: Array[String]): Unit = {
 		println("\n\nWelcome to the palindromic sequence project!\n\n")
@@ -105,5 +117,7 @@ object FunctionalPalindromesSearch {
 			val end2 = System.currentTimeMillis()
 			println("Done: " + ((end2 - start) / 1000).toInt + "s")
 		}
+	//	println(duplicates)
+		fileWriter.close()
 	}
 }
