@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object FunctionalPalindromesSearch {
 	
-	var combinations = new ArrayBuffer[List[Byte]]
+	var permutations = new ArrayBuffer[List[Byte]]
 	var count = 0
 	
 	// Print list
@@ -24,14 +24,11 @@ object FunctionalPalindromesSearch {
 	def sumCombinations(n: Byte, m: Byte, acc: ArrayBuffer[Byte], boo: (Int, ArrayBuffer[Byte]) => Boolean): Unit = {
 		
 		val sum = acc.sum
-		// TODO: if the statement below could account for m we could safe some time.
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
 		if (sum > n / 2) {}
 		else if (boo(sum, acc)) {
-			combinations.append(acc.toList)
-			println("\nSum: " + sum)
-			permutations(acc.toList)
+			permutation(acc.toList)
 			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
@@ -47,18 +44,16 @@ object FunctionalPalindromesSearch {
 		}
 	}
 	// Permutations
-	def permutations(l: List[Byte]): Unit = {
+	def permutation(l: List[Byte]): Unit = {
 		var perms = l.permutations
 		for (i <- perms) {
-			printList(i)
+			permutations.append(i.toList)
 			count += 1
 		}
 	}
 	// Build Palindromes
 	def palindromeAssemly(n: Byte, m: Byte): Unit = {
-		// I may be able to save time by passing sum into combinations instead of recalculating it
-		// TODO finish
-		for (l <- combinations) {
+		for (l <- permutations) {
 			val s = l.sum
 			if (s * 2 == n) 			printList(l.reverse ++ l)
 			else if (s * 2 == n - m) 	printList(l.reverse ++ (m +: l))
@@ -106,9 +101,9 @@ object FunctionalPalindromesSearch {
 			println("It took me " + ((end - start) / 1000).toInt + "s")
 		}
 		else {
-			println("\n=====================================\n")
 			palindromeAssemly(n.toByte, m.toByte)
-			println("Done: " + count)			
+			val end2 = System.currentTimeMillis()
+			println("Done: " + ((end2 - start) / 1000).toInt + "s")
 		}
 	}
 }
