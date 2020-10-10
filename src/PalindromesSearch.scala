@@ -25,33 +25,37 @@ object FunctionalPalindromesSearch {
     } 
 	
 	// Combinations
-	def sumCombinations(n: Byte, m: Byte, acc: ArrayBuffer[Byte], boo: (Int, ArrayBuffer[Byte]) => Boolean): Unit = {
+	def sumCombinations(n: Byte, 
+						m: Byte, 
+						b: Boolean,
+						acc: ArrayBuffer[Byte], 
+						boo: (Int, ArrayBuffer[Byte]) => Boolean): Unit = {
 		
 		val sum = acc.sum
 		val value = if (acc.last < n - sum) acc.last else n - sum
 		
 		if (sum > n / 2) {}
 		else if (boo(sum, acc)) {
-			permutation(acc.toList)
+			permutation(acc.toList, b)
 			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
-				sumCombinations(n, m, rec, boo)
+				sumCombinations(n, m, b, rec, boo)
 			}
 		}
 		else {
 			for (j <- 1 to value) {
 				var rec = acc.clone()
 				rec.append(j.toByte)
-				sumCombinations(n, m, rec, boo)
+				sumCombinations(n, m, b, rec, boo)
 			}
 		}
 	}
 	// Permutations
-	def permutation(l: List[Byte]): Unit = {
+	def permutation(l: List[Byte], b: Boolean): Unit = {
 		var perms = l.permutations
 		for (i <- perms) {
-			permutations.append(i.toList)
+			if (b) permutations.append(i.toList)
 			count += 1
 		}
 	}
@@ -75,29 +79,27 @@ object FunctionalPalindromesSearch {
 	def main(args: Array[String]): Unit = {
 		println("\n\nWelcome to the palindromic sequence project!\n\n")
 		if (args.length < 2 || args.length > 3) {
-			println("Use: java PalindromesSearch$ n m [y]")
+			println("Use: java PalindromesSearch n m [y]")
 			println("[y]: when informed, all palindromic sequences must be saved to a file")
 			System.exit(0)
 		}
 		val start = System.currentTimeMillis()
 		var n, m = 0
-		n = args(0).toByte
-		m = args(1).toByte
-		if (m > n || n < 1 || m < 1 || n > 127) {
+		n = args(0).toInt
+		m = args(1).toInt
+		if (n < 1 || m < 1 || n > 127) {
 			println("I don't like these numbers. Please try again.")
 			System.exit(0)
 		}
-		if (args.length == 2) {
-			println("Parameter n = " + n)
-			println("Parameter m = " + m)
-		}
-		else println("Generating palindromic sequences...")
-
+		println("Parameter n = " + n)
+		println("Parameter m = " + m)
+		if (args.length == 3) println("\nGenerating palindromic sequences...")
+		val save = if (args.length == 3) true else false
 		var accumulator = new ArrayBuffer[Byte]
 		def evens(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - m) / 2
 		def evenOdd(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m)
 		def oddEven(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || n - 2 * i % 2 == 1
-		def odds(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - 1) / 2
+		def odds(i: Int, ab: ArrayBuffer[Byte]): Boolean = ab.contains(m) || i == (n - m) / 2
 		def lambda = if (n % 2 == 0 && m % 2 == 0) evens(_,_) 
 				else if (n % 2 == 0 && m % 2 == 1) evenOdd(_,_)
 				else if (n % 2 == 1 && m % 2 == 0) oddEven(_,_) 
@@ -105,17 +107,17 @@ object FunctionalPalindromesSearch {
 		accumulator.append(0)
 		for (i <- 1 to n / 2) {
 			accumulator.update(0, i.toByte)
-			sumCombinations(n.toByte, m.toByte, accumulator, lambda)		
+			sumCombinations(n.toByte, m.toByte, save, accumulator, lambda)		
 		}
 		val end = System.currentTimeMillis()
 		if (args.length == 2) {	
 			println("\nNumber of palendromic sequences found: " + count)
-			println("It took me " + ((end - start) / 1000).toInt + "s")
+			println("It took me " + ((end - start) / 1000).toInt + "s\n")
 		}
 		else {
 			palindromeAssemly(n.toByte, m.toByte)
 			val end2 = System.currentTimeMillis()
-			println("Done: " + ((end2 - start) / 1000).toInt + "s")
+			println("Done!\n")
 		}
 	//	println(duplicates)
 		fileWriter.close()
